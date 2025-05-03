@@ -1,0 +1,33 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 65px;
+  height: 60vh;
+  margin-top: 10px;
+  border:2px solid red;
+  background-image: url('./neom-tuEtpjghVmg-unsplash.jpg');
+}
+.box {
+  padding: 30px;
+  font-size: medium;
+  color: red;
+  border: 2px solid red;
+text-align: center;
+}
+
+.box1 {
+  margin:10px;
+  background-color: aqua;
+  font-size: medium;
+  color: gold
+}
+
+.box2 {
+  margin:10px;
+  background-color: blueviolet;
+  font-size: medium;
+  color: goldenrod
+}

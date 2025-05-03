@@ -1,0 +1,130 @@
+Super ra macha! Let’s now understand **React State + Lifecycle** in a **clear + real-time style**. Interview lo idi **most expected concept** — especially difference between class vs functional lifecycle.
+
+---
+
+## 💡 First: What is **State** in React?
+
+> **State** is a built-in object used to store **dynamic data** that can change over time and affect UI.
+
+📌 Each component can have **its own local state**.
+
+### 🔥 Example:
+
+```jsx
+const [count, setCount] = useState(0);
+```
+
+* `count` = current value
+* `setCount()` = method to update it
+* Changing state = re-render the component automatically
+
+---
+
+## 🎯 Real-Time Example: Like Button
+
+```jsx
+function LikeButton() {
+  const [likes, setLikes] = useState(0);
+
+  return (
+    <button onClick={() => setLikes(likes + 1)}>
+      👍 {likes}
+    </button>
+  );
+}
+```
+
+✅ Every time you click → state updates → React re-renders the button with new value.
+
+---
+
+## 🔄 What is **Lifecycle**?
+
+> Lifecycle is the **sequence of steps** a component goes through:
+
+* 🟢 Mounting (first load)
+* 🟡 Updating (on state/props change)
+* 🔴 Unmounting (component removed)
+
+---
+
+## 🧠 Class Component Lifecycle (Old React)
+
+| Phase   | Method                               |
+| ------- | ------------------------------------ |
+| Mount   | `constructor`, `componentDidMount()` |
+| Update  | `componentDidUpdate()`               |
+| Unmount | `componentWillUnmount()`             |
+
+---
+
+## ✅ Functional Component Lifecycle (Modern React)
+
+Functional components use **`useEffect()`** to handle all 3 phases.
+
+```jsx
+useEffect(() => {
+  console.log("Component mounted");  // Mount phase
+
+  return () => {
+    console.log("Component unmounted"); // Unmount phase
+  };
+}, []); // Empty array = run once on mount
+```
+
+### 🔄 Update Phase:
+
+```jsx
+useEffect(() => {
+  console.log("State or prop updated");
+}, [count]); // This runs when count changes
+```
+
+---
+
+## 📦 Real-Time Example: Timer Component
+
+```jsx
+import { useEffect, useState } from 'react';
+
+function Timer() {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds(prev => prev + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval); // cleanup = unmount phase
+    };
+  }, []);
+
+  return <h3>Timer: {seconds} sec</h3>;
+}
+```
+
+✅ This component:
+
+* Starts timer on mount
+* Updates every second
+* Cleans up interval on unmount
+
+---
+
+## 🧠 Interview Style Answer:
+
+> “In React, state is used to hold data that can change and trigger re-renders. React components have a lifecycle — mounting, updating, and unmounting. In functional components, we manage lifecycle using `useEffect()`. The mount phase runs when the component loads, update when state/props change, and unmount during cleanup.”
+
+---
+
+## 🧪 Summary Table:
+
+| Concept                       | Explanation            |
+| ----------------------------- | ---------------------- |
+| useState                      | Local state management |
+| useEffect (no deps)           | Mount phase            |
+| useEffect with deps           | Update phase           |
+| Cleanup function in useEffect | Unmount phase          |
+
+---

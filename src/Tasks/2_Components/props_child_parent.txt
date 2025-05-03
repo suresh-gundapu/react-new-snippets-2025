@@ -1,0 +1,79 @@
+Super question ra macha! 💥
+
+Yes, **child component nundi parent ki data pass cheyali ante**, we **can’t send props directly back** (because props flow is **one-way**: parent → child).
+**BUT** there’s a correct pattern: **callback function as prop**.
+
+---
+
+## ✅ Child to Parent Communication – Correct Pattern
+
+### 🔁 Idea:
+
+1. **Parent** passes a function to **Child** as a prop.
+2. **Child** calls that function with some data.
+3. **Parent** receives the data!
+
+---
+
+## 🔧 Example:
+
+### 🔹 `Child.jsx`
+
+```jsx
+function Child({ sendDataToParent }) {
+  return (
+    <div>
+      <button onClick={() => sendDataToParent("Hello from Child")}>
+        Send to Parent
+      </button>
+    </div>
+  );
+}
+export default Child;
+```
+
+---
+
+### 🔹 `App.jsx` (Parent)
+
+```jsx
+import { useState } from "react";
+import Child from "./Child";
+
+function App() {
+  const [message, setMessage] = useState("");
+
+  const handleChildData = (data) => {
+    setMessage(data);
+  };
+
+  return (
+    <div>
+      <h2>Parent Component</h2>
+      <p>Message from child: {message}</p>
+      <Child sendDataToParent={handleChildData} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+
+## 🔄 How It Works:
+
+| Step                                          | What Happens |
+| --------------------------------------------- | ------------ |
+| Parent creates `handleChildData()`            |              |
+| Parent passes it as prop: `sendDataToParent`  |              |
+| Child calls `sendDataToParent("...")`         |              |
+| Parent receives that data and updates state ✅ |              |
+
+---
+
+## 🔥 Interview Style Answer:
+
+> “Since props flow one-way from parent to child, we can’t directly send data from child to parent. But we can pass a function from parent to child as a prop. 
+The child calls this function and sends data back to the parent. This is a common pattern used in React to handle child-to-parent communication.”
+

@@ -1,0 +1,120 @@
+Sure ra macha! Let’s dive into **React Props** — one of the most basic yet powerful concepts in React. I’ll explain it in a way that’s useful for both **interviews** and **real-time development**.
+
+---
+
+## 💡 What are Props in React?
+
+> **Props (short for Properties)** are **inputs** to a component.
+> They are **read-only**, passed from **parent to child**, and used to make components **dynamic and reusable**.
+
+---
+
+### 🔥 Real-Life Analogy
+
+Imagine you’re building a **custom T-shirt** printing app.
+
+* 🧑‍🎨 `Tshirt` is your component.
+* You pass **size** and **color** to it.
+* That data is like props!
+
+```jsx
+<Tshirt size="L" color="Red" />
+```
+
+---
+
+## ✅ Syntax & Example
+
+### 🔹 1. Passing Props (in parent):
+
+```jsx
+<Welcome name="Koushik" />
+```
+
+### 🔹 2. Receiving Props (in child):
+
+```jsx
+function Welcome(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+```
+
+### 🔹 3. Destructuring for cleaner code:
+
+```jsx
+function Welcome({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+```
+
+---
+
+## 🧠 Key Points
+
+| Concept      | Meaning                                             |
+| ------------ | --------------------------------------------------- |
+| 🔁 Reusable  | Same component with different data                  |
+| 🔗 One-way   | Props flow **from parent → child only**             |
+| 🔒 Immutable | Props **cannot be changed** inside child            |
+| ✅ Used For   | Labels, titles, IDs, user info, children, callbacks |
+
+---
+
+## 📦 Real-Time Component Example
+
+```jsx
+function ProductCard({ name, price }) {
+  return (
+    <div className="card">
+      <h3>{name}</h3>
+      <p>Price: ₹{price}</p>
+    </div>
+  );
+}
+
+// In App.jsx
+<ProductCard name="iPhone 15" price={79999} />
+<ProductCard name="Pixel 8" price={69999} />
+```
+
+👉 Reusable UI — different props → different data → same component.
+
+---
+
+## 🔐 Can I change props inside child?
+
+❌ **No!** Props are **read-only**.
+
+If you want to change something inside a component, use **state**, not props.
+
+---
+
+## 🎤 Interview Questions on Props
+
+| Question                                       | Answer                                                |
+| ---------------------------------------------- | ----------------------------------------------------- |
+| What are props in React?                       | Inputs to a component passed from parent to child     |
+| Are props mutable?                             | No, they are read-only                                |
+| How do you pass a function as a prop?          | `<Child onClick={handleClick} />`                     |
+| Can a child send data to parent via props?     | Not directly — use a callback function                |
+| What’s the difference between props and state? | Props come from parent, state is internal and mutable |
+
+---
+
+## 📬 Props with Function Callback (Child → Parent)
+
+```jsx
+function Child({ onSend }) {
+  return <button onClick={() => onSend('hello')}>Send</button>;
+}
+
+function App() {
+  const handleMessage = (msg) => alert(msg);
+  return <Child onSend={handleMessage} />;
+}
+```
+
+✅ This is how **child communicates with parent** via props.
+
+---
+

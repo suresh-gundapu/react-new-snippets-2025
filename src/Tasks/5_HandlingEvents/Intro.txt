@@ -1,0 +1,72 @@
+🔥 Excellent question ra macha!
+
+Let’s clear your doubt: **“Why do we use arrow functions inside event handlers like `onClick={() => handleClick()}` instead of just `onClick={handleClick}`?”**
+
+---
+
+## 🧠 Simple Rule:
+
+| Syntax                             | When to Use                                                    |
+| ---------------------------------- | -------------------------------------------------------------- |
+| `onClick={handleClick}`            | If you **don't need to pass any arguments**                    |
+| `onClick={() => handleClick(arg)}` | If you need to **pass custom arguments** or do something extra |
+
+---
+
+### ✅ Case 1: No arguments – Use directly
+
+```jsx
+function handleClick() {
+  console.log('Clicked!');
+}
+
+<button onClick={handleClick}>Click Me</button>
+```
+
+🟢 This is fine, because we’re **just calling the function directly** without arguments.
+
+---
+
+### ⚠️ Case 2: You want to pass arguments – Use arrow function
+
+```jsx
+function handleClick(itemId) {
+  console.log('Item clicked:', itemId);
+}
+
+<button onClick={() => handleClick(42)}>Click</button>
+```
+
+❌ If you write `onClick={handleClick(42)}`, it will **immediately execute on render**, not when clicked.
+
+✅ Arrow function helps **delay execution** until the actual click happens.
+
+---
+
+### 🔥 Bonus Case: Multiple actions
+
+```jsx
+<button onClick={() => {
+  console.log("Clicked!");
+  handleClick(10);
+}}>Click</button>
+```
+
+You can run multiple statements this way too.
+
+---
+
+## ❓ So why use arrow functions?
+
+✅ To **pass custom data**
+✅ To **delay execution** until user clicks
+✅ To **run multiple things** inside one `onClick`
+
+---
+
+🧪 Interview Answer:
+
+> “Arrow functions in event handlers help us pass arguments or add extra logic. Without them, the function would run immediately on render instead of on user action.”
+
+---
+

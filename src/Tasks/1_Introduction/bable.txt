@@ -1,0 +1,105 @@
+Super question ra macha! These are **core React build concepts** — often asked in interviews or real-world projects:
+
+1. **Babel ante enti?**
+2. **Assets annitini bundle cheyyedhi enti? (like images, CSS, JSX)**
+
+Let’s break both down clearly 👇
+
+---
+
+## 🧠 1. **What is Babel in React?**
+
+> **Babel** is a **JavaScript compiler** that converts **modern JavaScript (ES6+, JSX)** into **browser-compatible older JavaScript (ES5)**.
+
+### 🔧 Why React needs Babel?
+
+React uses:
+
+* JSX (which browsers don’t understand directly)
+* Modern syntax (like `let`, `const`, arrow functions, async/await)
+
+Babel:
+
+* Converts JSX to `React.createElement(...)`
+* Transpiles ES6+ to ES5
+
+### 🔥 Example:
+
+#### Your JSX Code:
+
+```jsx
+const element = <h1>Hello, Koushik!</h1>;
+```
+
+#### Babel Output:
+
+```js
+const element = React.createElement("h1", null, "Hello, Koushik!");
+```
+
+---
+
+## ✅ How Babel Works in React App?
+
+When you create a React project using **Vite** or **CRA**, it installs Babel under the hood.
+
+In older setups you may see this:
+
+```bash
+npm install @babel/core @babel/preset-env @babel/preset-react
+```
+
+And configure in `babel.config.js`:
+
+```js
+export default {
+  presets: ['@babel/preset-env', '@babel/preset-react'],
+};
+```
+
+---
+
+## 📦 2. What bundles all the assets?
+
+> **Webpack** or **Vite** are bundlers that **combine all files into a single/minimal output** — ready for browser.
+
+### ✅ What is bundled?
+
+| Type        | Example                          | Bundled? |
+| ----------- | -------------------------------- | -------- |
+| JS/JSX      | Component files                  | ✅ Yes    |
+| CSS         | `import './App.css'`             | ✅ Yes    |
+| Images      | `import logo from './logo.png'`  | ✅ Yes    |
+| Fonts       | `import './font.woff'`           | ✅ Yes    |
+| JSON        | `import data from './data.json'` | ✅ Yes    |
+| Audio/Video | Possible with config             | ✅ Yes    |
+
+---
+
+## 🔥 What is the Bundler Doing?
+
+Let’s say you have 50 files in `src/`:
+
+* Components
+* CSS
+* Images
+
+👉 Bundler (Webpack/Vite) does:
+
+1. Analyzes all `import` statements
+2. Finds dependencies
+3. Combines them into:
+
+   * `bundle.js` (for JS)
+   * `bundle.css` (for styles)
+   * Handles image/font optimization
+4. Applies **minification**, **tree shaking** (removes unused code)
+
+---
+
+## 🧠 Interview Style Answer
+
+> "Babel is a compiler that converts modern JavaScript and JSX into browser-compatible JavaScript (ES5).
+ In a React app, Babel helps convert JSX to React.createElement(). Meanwhile, a bundler like Webpack or Vite handles all project files — JavaScript, CSS, 
+ images — and bundles them into optimized files for deployment."
+
