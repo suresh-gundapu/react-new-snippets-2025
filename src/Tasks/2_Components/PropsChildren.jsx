@@ -16,6 +16,7 @@ Here i am passing one button parent to child component see once
 
 
  */
+import PropTypes from "prop-types";
 
 const PropsChildren = (props) => {
   console.dir("asdasd" + props);
@@ -26,6 +27,10 @@ const PropsChildren = (props) => {
       {props.children}
     </>
   );
+};
+PropsChildren.propTypes = {
+  name: PropTypes.string.isRequired,
+  mobile: PropTypes.number,
 };
 
 export default PropsChildren;

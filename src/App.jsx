@@ -8,6 +8,7 @@ import WelcomeReact from "./Tasks/1_Introduction/WelcomeReact";
 import Props_child_parent_1 from "./Tasks/2_Components/Props_child_parent1";
 import Props_child_parent_2 from "./Tasks/2_Components/Props_child_parent_2";
 import TimerComp from "./Tasks/4_StateLifecycle/TimerComp";
+import UseFetchhook1 from "./Tasks/5_Hooks/UseFetchhook1";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <WelcomeReact />
       <Props_child_parent_1 />
       <TimerComp />
+      <UseFetchhook1 />
     </>
   );
 }

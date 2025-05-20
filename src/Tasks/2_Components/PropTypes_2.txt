@@ -1,0 +1,96 @@
+Super macha! Ikkada nee interview lo padachu ani expect cheyyachu 5 **PropTypes-related real-time questions** with simple and powerful **answers**, and also **PropTypes vs TypeScript** + a **real-world example bug that PropTypes saved**.
+
+---
+
+## ✅ 1. **What are PropTypes in React?**
+
+**🗣️ Answer:**
+PropTypes are used to **validate props at runtime**. They check whether the correct data type is passed to a component. If not, React shows a warning in the console.
+
+**🧠 Real-time:**
+If someone sends a string instead of number for `age`, you'll know immediately.
+
+```jsx
+MyComponent.propTypes = {
+  age: PropTypes.number
+};
+```
+
+---
+
+## ✅ 2. **How do you validate an array of objects in props?**
+
+**🗣️ Answer:**
+Using `PropTypes.arrayOf(PropTypes.shape({...}))`
+
+```jsx
+UserList.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string.isRequired
+    })
+  )
+};
+```
+
+**🧠 Real-time:**
+User list API ninchi data osthadi kada, so array lo each object correct format lo unda chudali.
+
+---
+
+## ✅ 3. **What happens if a required prop is not passed?**
+
+**🗣️ Answer:**
+React will show a **warning** in the console:
+“Warning: Failed prop type: The prop `name` is marked as required…”
+
+**🧠 Real-time:**
+User profile page lo name pass cheyyakapothe UI blank ga untadi, but PropTypes warning istundi debug cheyyadaniki.
+
+---
+
+## ✅ 4. **How do you define default values for props?**
+
+**🗣️ Answer:**
+Using `defaultProps`:
+
+```jsx
+MyComponent.defaultProps = {
+  isActive: false
+};
+```
+
+**🧠 Real-time:**
+API optional field pampakapote `undefined` vasthadi. DefaultProps tho crash avoid avutadi.
+
+---
+
+## ✅ 5. **What’s the difference between PropTypes and TypeScript?**
+
+| Feature         | PropTypes                    | TypeScript             |
+| --------------- | ---------------------------- | ---------------------- |
+| Type Checking   | Runtime                      | Compile-time           |
+| Required Setup  | Minimal (only PropTypes lib) | Needs TS setup, config |
+| IDE Suggestions | No                           | Yes                    |
+| Performance     | Slight runtime overhead      | None at runtime        |
+| Recommendation  | Small projects or when no TS | Enterprise apps        |
+
+**🗣️ Interview Answer:**
+“If project lo TS lekapote, PropTypes help with basic validation at runtime. But if using TS, it’s better to skip PropTypes and use interfaces or types for stronger compile-time safety.”
+
+---
+
+## 💡 Real-Time Bug PropTypes Saved Example:
+
+> “Oka sari user object lo name missing ayyindi API bug valla. UI lo crash ayyindi, but PropTypes warning console lo clear ga chupinchindi: `user.name is required`. Daan valla I fixed it quickly by showing fallback UI.”
+
+---
+
+Want cheyyava:
+
+* 📄 Cheat Sheet PDF of all PropTypes
+* 💻 Realtime Project Component using PropTypes
+* 🔁 Practice MCQs based on PropTypes?
+
+Cheppu ra next step?
