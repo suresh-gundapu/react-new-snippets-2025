@@ -1,0 +1,104 @@
+Orey macha 🔥! `list keys` React lo **chaala important concept**, especially when you use `.map()` to render lists.
+
+Interview lo question ila vasthadi:
+
+> **"Why are keys used in React lists?"**
+> **"What happens if I don't use a key or use index as key?"**
+
+So nenu simple + real-time + Telugu mix lo cheptha. Let’s go! 👇
+
+---
+
+## 🧩 What are Keys in React?
+
+**Keys** are unique identifiers given to each element in a list to help React track changes (add/update/delete) efficiently.
+
+```jsx
+{items.map(item => (
+  <li key={item.id}>{item.name}</li>
+))}
+```
+
+---
+
+## ✅ Why Keys Are Important?
+
+| Reason                  | Explanation                               |
+| ----------------------- | ----------------------------------------- |
+| 🔄 Efficient Updates    | React can identify which items changed    |
+| 🧠 Diffing Optimization | React uses keys in Virtual DOM comparison |
+| 🧼 Prevent re-renders   | Helps avoid unnecessary component refresh |
+
+---
+
+## 😵‍💫 What Happens If No Key?
+
+```jsx
+{items.map(item => <li>{item.name}</li>)} // ❌ No key
+```
+
+React shows a warning:
+
+> `Warning: Each child in a list should have a unique "key" prop.`
+
+And your UI behaves weirdly during update/delete.
+
+---
+
+## ❌ Should I use Index as Key?
+
+```jsx
+{items.map((item, index) => <li key={index}>{item.name}</li>)} // 😬
+```
+
+| Case                              | Result                            |
+| --------------------------------- | --------------------------------- |
+| Static list                       | Okay-ish                          |
+| List changes (add/remove/reorder) | ❌ BAD — React misidentifies items |
+
+> Use index only if list is guaranteed not to change.
+
+---
+
+## ✅ Real-Time Example (Correct Way):
+
+```jsx
+const users = [
+  { id: 101, name: "Koushik" },
+  { id: 102, name: "Ravi" }
+];
+
+return (
+  <ul>
+    {users.map(user => (
+      <li key={user.id}>{user.name}</li>
+    ))}
+  </ul>
+);
+```
+
+---
+
+## 🔥 Interview Answer (Simple & Confident):
+
+> “Keys help React identify which list items have changed, been added, or removed. They improve rendering performance and prevent unexpected UI bugs. I usually use a unique ID (like user ID or product ID) as a key. I avoid using index as key unless the list is static and won’t change.”
+
+---
+
+## 🔚 Summary Table:
+
+| ✅ Do This                 | ❌ Don’t Do This                          |
+| ------------------------- | ---------------------------------------- |
+| Use `item.id` as `key`    | Use `index` as `key` (for dynamic lists) |
+| Keys should be **unique** | Don't reuse same keys                    |
+| Keys should be **stable** | Don’t change key values                  |
+
+---
+
+Want cheyyava:
+
+* 🧾 PDF cheat note
+* 💻 List diffing animation example
+* React key-based bug demo?
+
+Cheppu ra next cheptha!
